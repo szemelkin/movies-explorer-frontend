@@ -1,0 +1,31 @@
+@import url(./NavTab/nav-tab/nav-tab.css);
+@import url(./AboutProject/about-project/about-project.css);
+@import url(./Techs/techs/techs.css);
+@import url(./AboutMe/about-me/about-me.css);
+@import url(./Portfolio/portfolio/portfolio.css);
+
+
+.main {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1280px;
+    /* max-height: 74px; */
+    /* display: flex;
+    flex-direction: column; */
+    /* justify-content: space-between; */
+    /* border-bottom: 1px solid #545454; */
+    opacity: 1;
+    /* height: 74px; */
+    background-color: #202020;
+
+}
+
+/* 
+@media (max-width: 425px) {
+
+  .main {
+    padding-top: 16px;
+    box-sizing: border-box;
+
+  }
+} */

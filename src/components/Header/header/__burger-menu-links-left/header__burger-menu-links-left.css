@@ -1,0 +1,19 @@
+.header__burger-menu-links-left {
+    background-color: black;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    height: 100vh;
+    width: 50vw;
+    z-index: 11;
+    opacity: 0.5;
+}
+
+/* @media (max-width: 320px) {
+    .header__burger-menu-links-left {
+        opacity: 1;
+        width: 0vw;
+    }
+} */

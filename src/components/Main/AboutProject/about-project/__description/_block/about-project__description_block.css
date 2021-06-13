@@ -1,0 +1,13 @@
+.about-project__description_block {
+    margin-right: 40px;
+}
+
+.about-project__description_block:last-child {
+    margin-right: 0px;
+}
+
+@media (max-width: 320px) {
+    .about-project__description_block  {    
+        padding-top: 60px;  
+    }
+}

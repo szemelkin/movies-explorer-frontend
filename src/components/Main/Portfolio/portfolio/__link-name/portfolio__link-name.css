@@ -1,0 +1,32 @@
+.portfolio__link-name {
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 50px;
+    letter-spacing: -0.04em;
+    text-align: left;
+
+    color: #FFFFFF;  
+
+}
+
+
+.portfolio__link-name:hover {
+    opacity: 80%;
+    font-weight: 400;
+    /* border-bottom: 1px white solid; */
+}
+
+@media (max-width: 768px) {
+    .portfolio__link-name {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 320px) {
+    .portfolio__link-name {
+        font-size: 18px;
+        line-height: 47px;
+
+    }
+}

@@ -1,0 +1,29 @@
+@import url('./__link-block/portfolio__link-block.css');
+@import url('./__link-name/portfolio__link-name.css');
+@import url('./__link-pic/portfolio__link-pic.css');
+@import url('./__link/portfolio__link.css');
+@import url('./__links/portfolio__links.css');
+@import url('./__main-title/portfolio__main-title.css');
+
+.portfolio {
+    background-color: #202020;
+    padding-left: 70px;
+    padding-right: 70px;
+    padding-top:100px;
+}
+
+@media (max-width: 768px) {
+    .portfolio { 
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-top: 90px;
+    }
+}
+
+@media (max-width: 320px) {
+    .portfolio { 
+        padding-left: 14px;
+        padding-right: 14px;
+        padding-top: 69px;
+    }
+}

@@ -1,0 +1,30 @@
+@import url('./__description/about-me__description.css');
+@import url('./__links/about-me__links.css');
+@import url('./__photo/about-me__photo.css');
+@import url('./__subtitle/about-me__subtitle.css');
+@import url('./__text/about-me__text.css');
+@import url('./__title/about-me__title.css');
+@import url('./__main/about-me__main.css');
+@import url('./__text/about-me__text_links.css');
+
+.about-me {
+    background-color: #202020;
+    padding-left: 70px;
+    padding-right: 70px;
+}
+
+@media (max-width: 768px) {
+    .about-me {
+
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+}
+
+@media (max-width: 320px) {
+    .about-me {
+
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+}

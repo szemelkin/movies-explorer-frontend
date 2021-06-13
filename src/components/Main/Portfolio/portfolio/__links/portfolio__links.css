@@ -1,0 +1,12 @@
+.portfolio__links {
+    display: flex;
+    flex-direction: column;
+    padding-top: 50px;
+}
+
+@media (max-width: 320px) {
+    .portfolio__links { 
+        padding-top: 40px;
+
+    }
+}

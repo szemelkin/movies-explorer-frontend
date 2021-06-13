@@ -1,0 +1,21 @@
+.header__link_type_hidden {
+
+    }
+
+@media (max-width: 768px) {
+
+    .header__link_type_hidden {
+        /* opacity: 0; */
+        display: none;
+    }
+}
+
+@media (max-width: 320px) {
+
+    .header__link_type_hidden {
+
+        font-size: 10px;
+        line-height: 16px;
+        margin-right: 14px;
+    }
+}

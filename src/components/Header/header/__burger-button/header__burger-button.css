@@ -1,0 +1,16 @@
+.header__burger-button {
+    border: none;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    background-color: #202020;
+    display: none;
+    z-index: 12;
+}
+
+@media (max-width: 768px) {
+
+    .header__burger-button {
+        /* opacity: 0; */
+        display: inline;
+    }
+}

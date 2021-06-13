@@ -1,0 +1,23 @@
+@import url('./_text/about-project__description_text.css');
+@import url('./_title/about-project__description_title.css');
+@import url('./_block/about-project__description_block.css');
+
+.about-project__description{
+    padding-top: 70px;
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width: 768px) {
+    .about-project__description {
+        padding-top: 70px;
+    }
+}
+
+@media (max-width: 320px) {
+    .about-project__description {
+        padding-top: 0px;
+        display: flex;
+        flex-direction: column;
+    }
+}

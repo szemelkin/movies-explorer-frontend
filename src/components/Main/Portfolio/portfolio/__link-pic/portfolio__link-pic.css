@@ -1,0 +1,16 @@
+.portfolio__link-pic {
+    width: 29px;
+}
+
+.portfolio__link-pic:hover {
+    opacity: 80%;
+    font-weight: 400;
+    /* border-bottom: 1px white solid; */
+}
+
+
+@media (max-width: 320px) {
+    .portfolio__link-pic {
+        width: 18px;
+    }
+}

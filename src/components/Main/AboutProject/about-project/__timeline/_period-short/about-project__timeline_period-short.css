@@ -1,0 +1,36 @@
+.about-project__timeline_period-short {
+    
+    margin: 0 0 0 0;
+
+    height: 36px;
+
+    /* font-family: Inter; */
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: center;
+    /* padding-top: 12px; */
+
+    color: black;
+
+    background-color: #3DDC84;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    /* grid-area: first_period; */
+
+
+}
+
+@media (max-width: 320px) {
+    .about-project__timeline_period-short {
+        font-size: 11px;
+        line-height: 13px;
+    }    
+}
+

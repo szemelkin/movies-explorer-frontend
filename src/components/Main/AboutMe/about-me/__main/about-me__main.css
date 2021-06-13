@@ -1,0 +1,11 @@
+.about-me__main {
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width: 320px) {
+    .about-me__main {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}

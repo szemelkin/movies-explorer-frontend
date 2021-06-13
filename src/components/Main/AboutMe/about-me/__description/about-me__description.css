@@ -1,0 +1,11 @@
+.about-me__description {
+    max-width: 600px;
+    
+}
+
+@media (max-width: 768px) {
+    .about-me__description {
+        max-width: 364px;
+        
+    }
+}

@@ -1,0 +1,13 @@
+@import url('./__text/filter-check-box__text.css');
+@import url('./__tumbler/filter-check-box__tumbler');
+@import url('./__button/filter-check-box__button.css');
+
+.filter-check-box {
+    padding-top: 30px;
+    padding-bottom: 48px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+

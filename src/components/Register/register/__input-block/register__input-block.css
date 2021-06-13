@@ -1,0 +1,15 @@
+.register__input-block {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 320px) {
+
+    .register__input-block {
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+  }
+  

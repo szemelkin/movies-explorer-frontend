@@ -1,0 +1,23 @@
+.nav-tab__buttons {
+    display: flex;
+    flex-direction: row;
+    padding-top: 150px;
+    padding-bottom: 30px;
+    justify-content: center;
+}
+
+@media all and (max-width: 768px) {
+    .nav-tab__buttons {
+
+        padding-top: calc(314*100%/768);
+
+    }
+}
+
+@media all and (max-width: 320px) {
+    .nav-tab__buttons {
+
+        padding-top: calc(212*100%/320);
+
+    }
+}

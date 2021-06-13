@@ -1,0 +1,11 @@
+@import url('./SearchForm/search-form/search-form.css');
+@import url('./FilterCheckBox/filter-check-box/filter-check-box.css');
+@import url('./Continue/continue/continue.css');
+
+.movies {
+    background-color: #202020;;
+
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -1,0 +1,9 @@
+.movies-card__button {
+    background-color: #222222;
+    border: none;
+    padding-right: 14px;
+}
+
+.movies-card__button:hover {
+    opacity: 80%;
+}

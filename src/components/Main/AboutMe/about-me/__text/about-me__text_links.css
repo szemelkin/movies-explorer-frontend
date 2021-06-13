@@ -1,0 +1,21 @@
+.about-me__text_links {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: left;
+
+    color: #FFFFFF;
+
+    text-decoration: none;
+
+    margin-right: 20px;
+
+}
+
+.about-me__text_links:hover {
+    /* opacity: 80%; */
+    font-weight: 400;
+    border-bottom: 1px white solid;
+}

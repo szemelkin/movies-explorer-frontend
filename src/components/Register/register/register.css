@@ -1,0 +1,32 @@
+@import url('./__button/register__button.css');
+@import url('./__button/register__button_inactive.css');
+@import url('./__input-block/register__input-block.css');
+@import url('./__input-error/register__input-error.css');
+@import url('./__input/register__input.css');
+@import url('./__input-title/register__input-title.css');
+@import url('./__registaration-text/register__registration-text.css');
+@import url('./__registration-link/register__registration-link.css');
+
+.register {
+    background-color: #202020;;
+
+    max-width: 396px;
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-top: 50px;
+    padding-bottom: 80px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}
+
+@media (max-width: 320px) {
+
+    .register {
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+  }

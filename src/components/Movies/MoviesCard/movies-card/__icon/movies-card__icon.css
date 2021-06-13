@@ -1,0 +1,4 @@
+.movies-card__icon {
+    width: 30px;
+    object-fit: contain;
+}

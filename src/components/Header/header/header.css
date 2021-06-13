@@ -1,0 +1,42 @@
+@import url(./__logo/header__logo.css);
+@import url(./__button/header__button.css);
+@import url(./__link/header__link.css);
+@import url(./__menu/header__menu.css);
+@import url(./__profile-link/header__profile-link.css);
+@import url(./__burger-icon/header__burger.css);
+@import url(./__burger-button/header__burger-button.css);
+@import url(./__invisible/header__invisible.css);
+@import url(./__burger-menu/header__burger-menu.css);
+@import url(./__link/header__link_type_burger.css);
+@import url(./__burger-menu-links/header__burger-menu-links.css);
+@import url(./__burger-menu-links-left/header__burger-menu-links-left.css);
+@import url(./__burger-button/header__burger-button_type_black.css);
+@import url(./__link/header__link_type_hidden.css);
+
+
+
+.header {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1280px;
+    /* max-height: 74px; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* border-bottom: 1px solid #545454; */
+    opacity: 1;
+    height: 74px;
+
+}
+
+
+
+
+@media (max-width: 425px) {
+
+  .header {
+    padding-top: 16px;
+    box-sizing: border-box;
+
+  }
+}

@@ -1,0 +1,39 @@
+
+
+.movies-card-list {
+    background-color: #202020;;
+
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    justify-content: space-between;
+
+    padding-top: 51px;
+    min-height: 100vh;
+    align-content: flex-start;
+
+    padding-left: 70px;
+    padding-right: 70px;
+
+} 
+
+
+@media (max-width: 768px) {
+    .movies-card-list {
+        padding-left: 30px;
+        padding-right: 30px;
+        justify-content: center;
+    }
+}
+
+
+@media (max-width: 320px) {
+    .movies-card-list {
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 40px;
+        justify-content: center;
+    }
+}

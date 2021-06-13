@@ -1,0 +1,15 @@
+.footer__items {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+@media (max-width: 320px) {
+    .footer__items {
+        display: flex;
+        flex-direction: column-reverse;
+
+    }
+}

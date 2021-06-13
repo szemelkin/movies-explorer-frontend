@@ -1,0 +1,27 @@
+@import url('./__edit/profile__edit.css');
+@import url('./__exit/profile__exit.css');
+@import url('./__field/profile__field.css');
+@import url('./__text/profile__text.css');
+@import url('./__title/profile__title.css');
+
+.profile {
+    background-color: #202020;;
+
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-top: 50px;
+    padding-bottom: 80px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .profile {
+        width: 339px !important;
+    }
+}

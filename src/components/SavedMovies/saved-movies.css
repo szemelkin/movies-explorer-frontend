@@ -1,0 +1,11 @@
+@import url('../Movies//SearchForm/search-form/search-form.css');
+@import url('../Movies/FilterCheckBox/filter-check-box/filter-check-box.css');
+@import url('../Movies/Continue/continue/continue.css');
+
+.saved-movies {
+    background-color: #202020;;
+
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+}

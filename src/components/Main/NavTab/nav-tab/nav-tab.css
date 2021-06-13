@@ -1,0 +1,41 @@
+@import url(./__button/nav-tab__button.css);
+@import url(./__buttons/nav-tab__buttons.css);
+@import url(./__title/nav-tab__title.css);
+
+.nav-tab {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1280px;
+    /* max-height: 74px; */
+    /* display: flex;
+    flex-direction: column;
+    justify-content: space-between; */
+    /* border-bottom: 1px solid #545454; */
+    opacity: 1;
+
+    background-color: #272727;
+
+    border-radius: 10px;
+    margin-left: 40px;
+    margin-right: 40px;
+    padding-top: 20px;
+
+}
+
+
+@media all and (max-width: 768px) {
+    .nav-tab {
+        height: calc(834*100%/768);
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+
+@media (max-width: 320px) {
+
+    .nav-tab {
+        height: calc(568*100%/320);
+        margin-left: 14px;
+        margin-right: 14px;
+    }
+}

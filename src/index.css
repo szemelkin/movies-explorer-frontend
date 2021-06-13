@@ -1,0 +1,7 @@
+@import url(../src/vendor/normalize.css);
+@import url(../src/blocks/page/page.css);
+@import url(../src/components/Header/header/header.css);
+@import url(../src/components/Main/main.css);
+@import url(../src/components/Footer/footer.css);
+@import url(../src/components/Movies/movies.css);
+@import url(../src/components/Errors/errors/errors.css);

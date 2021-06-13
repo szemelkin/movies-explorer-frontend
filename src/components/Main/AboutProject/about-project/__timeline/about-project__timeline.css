@@ -1,0 +1,42 @@
+@import url('./_block-long/about-project__timeline_block-long.css');
+@import url('./_block-short/about-project__timeline_block-short.css');
+@import url('./_description/about-project__timeline_description.css');
+@import url('./_period-long/about-project__timeline_period-long.css');
+@import url('./_period-short/about-project__timeline_period-short.css');
+.about-project__timeline {
+    padding-top: 110px;
+    padding-bottom: 110px;    
+    display: grid;
+    grid-template-columns: 228px 1fr ;
+    grid-template-rows: 36px 36px ;    
+
+}
+
+@media (max-width: 768px) {
+
+    .about-project__timeline {
+
+        padding-top: 93px;
+        padding-bottom: 90px;  
+
+        grid-template-columns: 120px 1fr ;
+        grid-template-rows: 18px 18px ;    
+    
+    }
+    
+}
+
+
+@media (max-width: 320px) {
+
+    .about-project__timeline {
+
+        padding-top: 60px;
+        padding-bottom: 90px;  
+
+        grid-template-columns: 100px 1fr ;
+        grid-template-rows: 18px 18px ;    
+    
+    }
+    
+}

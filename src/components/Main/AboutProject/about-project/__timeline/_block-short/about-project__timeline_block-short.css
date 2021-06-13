@@ -1,0 +1,15 @@
+.about-project__timeline_block-short {
+    /* width: 228px; */
+    background-color: #3DDC84;
+    flex-basis: 225px;
+}
+
+@media (max-width: 425px) {
+
+    .about-project__timeline_block-short {
+        /* width: 228px; */
+        background-color: #3DDC84;
+        flex-basis: 120px;
+    }
+
+}

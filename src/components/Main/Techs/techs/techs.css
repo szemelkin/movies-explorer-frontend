@@ -1,0 +1,25 @@
+@import url('./__button/techs__button.css');
+@import url('./__buttons/techs__buttons.css');
+@import url('./__subtitle/techs__subtitle.css');
+@import url('./__title/techs__title.css');
+
+
+.techs {
+    background-color: #272727;;
+    padding-left: 70px;
+    padding-right: 70px;
+}
+
+@media (max-width: 768px) {
+    .techs {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+}
+
+@media (max-width: 320px) {
+    .techs {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+}

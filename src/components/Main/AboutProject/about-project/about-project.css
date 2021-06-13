@@ -1,0 +1,23 @@
+@import URL('./__description/about-project__description.css');
+@import URL('./__main-title/about-project__main-title.css');
+@import URL('./__timeline/about-project__timeline.css');
+
+.about-project {
+    background-color: #202020;;
+    padding-left: 70px;
+    padding-right: 70px;
+}
+
+@media (max-width: 768px) {
+    .about-project {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+}
+
+@media (max-width: 320px) {
+    .about-project {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+}

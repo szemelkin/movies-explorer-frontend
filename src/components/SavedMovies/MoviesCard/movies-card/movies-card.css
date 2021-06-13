@@ -1,0 +1,27 @@
+@import url('./__button/movies-card__button.css');
+@import url('./__description/movies-card__description.css');
+@import url('./__duration/movies-card__duration.css');
+@import url('./__image/movies-card__image.css');
+@import url('./__items/movies-card__items.css');
+@import url('./__title/movies-card__title.css');
+@import url('./__icon/movies-card__icon.css');
+
+.movies-card {
+    width: 364px;
+
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+    .movies-card {
+        width: 339px;
+    }
+}
+
+@media (max-width: 320px) {
+    .movies-card {
+        width: 300px;
+    }
+}

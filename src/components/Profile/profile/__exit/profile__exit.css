@@ -1,0 +1,19 @@
+.profile__exit {
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0px;
+    text-align: center;
+    color: #EE3465;
+
+    /* padding-bottom: 70px; */
+
+    text-decoration: none;
+}
+
+.profile__exit:hover {
+    opacity: 80%;
+    font-weight: 400;
+    border-bottom: 1px solid #EE3465;
+}

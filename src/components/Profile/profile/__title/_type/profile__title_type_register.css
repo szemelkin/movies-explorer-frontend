@@ -1,0 +1,11 @@
+.profile__title_type_register {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+    align-self: start;
+}
+
+@media (max-width: 320px) {
+    .profile__title_type_register {
+        align-self: center;
+    }
+}

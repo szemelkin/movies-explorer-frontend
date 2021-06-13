@@ -1,0 +1,14 @@
+.movies-card__duration {
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 13px;
+    letter-spacing: 0px;
+    text-align: left;
+
+    color: #8B8B8B;
+
+    margin: 0 0 0 0;
+
+    padding-top: 9px;
+}

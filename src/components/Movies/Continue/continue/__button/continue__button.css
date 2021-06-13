@@ -1,0 +1,12 @@
+.continue__button {
+    background-color: #2F2F2F;
+    border: none;
+    margin: 0 0 0 0;
+    max-width: 1140px;
+    border-radius: 6px;
+    width: 100%;
+}
+
+.continue__button:hover {
+    opacity: 80%;
+}
