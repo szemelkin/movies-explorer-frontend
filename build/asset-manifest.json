@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/szemelkin/movies-explorer-frontendstatic/css/main.663b4b09.chunk.css",
+    "main.js": "/szemelkin/movies-explorer-frontendstatic/js/main.49c67884.chunk.js",
+    "main.js.map": "/szemelkin/movies-explorer-frontendstatic/js/main.49c67884.chunk.js.map",
+    "runtime-main.js": "/szemelkin/movies-explorer-frontendstatic/js/runtime-main.cf4b85a4.js",
+    "runtime-main.js.map": "/szemelkin/movies-explorer-frontendstatic/js/runtime-main.cf4b85a4.js.map",
+    "static/js/2.e28d4342.chunk.js": "/szemelkin/movies-explorer-frontendstatic/js/2.e28d4342.chunk.js",
+    "static/js/2.e28d4342.chunk.js.map": "/szemelkin/movies-explorer-frontendstatic/js/2.e28d4342.chunk.js.map",
+    "static/js/3.28123d10.chunk.js": "/szemelkin/movies-explorer-frontendstatic/js/3.28123d10.chunk.js",
+    "static/js/3.28123d10.chunk.js.map": "/szemelkin/movies-explorer-frontendstatic/js/3.28123d10.chunk.js.map",
+    "index.html": "/szemelkin/movies-explorer-frontendindex.html",
+    "static/css/main.663b4b09.chunk.css.map": "/szemelkin/movies-explorer-frontendstatic/css/main.663b4b09.chunk.css.map",
+    "static/js/2.e28d4342.chunk.js.LICENSE.txt": "/szemelkin/movies-explorer-frontendstatic/js/2.e28d4342.chunk.js.LICENSE.txt",
+    "static/media/logo.a307e1c4.svg": "/szemelkin/movies-explorer-frontendstatic/media/logo.a307e1c4.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.cf4b85a4.js",
+    "static/js/2.e28d4342.chunk.js",
+    "static/css/main.663b4b09.chunk.css",
+    "static/js/main.49c67884.chunk.js"
+  ]
+}
