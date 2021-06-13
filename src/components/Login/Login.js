@@ -4,9 +4,11 @@ import '../Header/header/header.css'
 import reactLogo from '../../images/logo.svg';
 import { useEffect, useState, useContext } from 'react'
 
+// import { CurrentUserContext } from '../contexts/CurrentUserContext';
+
 import { Link, useHistory, useLocation } from 'react-router-dom'
 
-const Login = ({onLogin}) => {
+const Login = (props) => {
 
     const initialLoginData = {
         name: '',
@@ -40,16 +42,18 @@ const Login = ({onLogin}) => {
         }
     }, [emailError, passwordError])
     
-    
-    const emailHandler = (e) => {
+   
+    function emailHandler(e) {
         setEmail(e.target.value)
+        console.log('emailHandler', email)
         handleChange(e)
-        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if (!re.test(String(email).toLowerCase())) {
+        const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        if (!re.test(String(e.target.value).toLowerCase())) {
             setEmailError('Некорректный емейл')
         } else {
             setEmailError('')
-        }
+        }   
+        // const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     }
 
     const passwordHandler = (e) => {
@@ -87,6 +91,7 @@ const Login = ({onLogin}) => {
         }))
     }
 
+    
     const resetForm = () => {
         setPasswordError('')
         setEmailError('')
@@ -95,11 +100,15 @@ const Login = ({onLogin}) => {
     
     const handleSubmit = (e) => {    
         e.preventDefault();
+        console.log('handleSubmit',dataLogin, email)
         if (!dataLogin.email || !dataLogin.password) {
+            console.log('прикатились сюда')
             return;
         }
-        onLogin(dataLogin)
-            .then(resetForm)
+        props.onLogin(dataLogin)
+            .then(console.log('dataLogin',dataLogin))
+            .then(resetForm)  
+            .then(console.log('дошли'))
             .then(() => history.push('/movies'))
             .catch(err => setMessage(err.message || 'Что-то пошло не так!'))
         }

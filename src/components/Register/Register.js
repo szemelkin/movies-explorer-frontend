@@ -52,7 +52,7 @@ const Register = ({ onRegister }) => {
         setEmail(e.target.value)
         handleChange(e)
         const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if (!re.test(String(email).toLowerCase())) {
+        if (!re.test(String(e.target.value).toLowerCase())) {
             setEmailError('Некорректный емейл')
         } else {
             setEmailError('')
@@ -106,8 +106,6 @@ const Register = ({ onRegister }) => {
     }
 
     const handleSubmit = (e) => {
-        console.log(data)
-        console.log(onRegister(data))
         e.preventDefault();
         if (!data.email || !data.password) {
         return;

@@ -13,7 +13,6 @@ import SavedMovies from '../components/SavedMovies/SavedMovies';
 import Errors from '../components/Errors/Errors';
 import ProtectedRoute from './ProtectedRoute';
 
-import moviesApi from '../utils/MoviesApi'
 import mainApi from '../utils/MainApi'
 
 import * as auth from '../utils/auth';
@@ -29,15 +28,22 @@ function App() {
         email: ''
         })
                 
-    
+
     const initialData = {
         name: '',
         email: '',
         };    
 
-    function handleRequest() {
-        mainApi.getUserInfo()
+    const testData = {
+        name: 'Popa',
+        email: 'popa@popa.ru',
+        };    
+
+    const handleRequest = () => {
+        let  token  = localStorage.getItem('token')
+        mainApi.getUserInfo(token)
             .then(res => {
+                console.log('handleRequest',res)
                 setCurrentUser(res)
                 
             })
@@ -47,8 +53,9 @@ function App() {
         
     useEffect(() => {
         handleRequest()
+        setCurrentUser(testData)
+        console.log('useEffect handleRequest',currentUser)
     }, []);
-
 
     function handleSignOut() {
         // Удаляем токен из локального хранилища при логауте
@@ -69,6 +76,7 @@ function App() {
                 new Error('Что-то пошло не так!');            
             }
             if (res) {
+                // localStorage.setItem('token')
             return res;
             }
         })
@@ -99,18 +107,21 @@ function App() {
     // const tokenCheck = () => {
     //     const token = localStorage.getItem('token');      
     //     if (token) {
-    //         auth.getContent(token).then((res) => {
-    //             if (res) {
-    //             setLoggedIn(true);
-    //             setCurrentUser({
-    //                 name: res.name,`
-    //                 email: res.email,
-    //             })
-    //             console.log(currentUser)
-    //             history.push('/movies');
+    //         setLoggedIn(true);    
+    //         handleRequest();
+    //         history.push('/movies');
+    // //         auth.getContent(token).then((res) => {
+    // //             if (res) {
+    // //             setLoggedIn(true);
+    // //             setCurrentUser({
+    // //                 name: res.name,`
+    // //                 email: res.email,
+    // //             })
+    // //             console.log(currentUser)
+    // //             history.push('/movies');
     //             }
-    //         })
-    //         .catch(() => history.push('/'))
+    // //         })
+    //         // .catch(() => history.push('/'))
     //         }
     //     }
 
@@ -120,22 +131,23 @@ function App() {
         .then(res => {
             if (!res || res.statusCode === 400) throw new Error('Что-то пошло не так');
                 if (res.token) {        
-                    setLoggedIn(true);
-                    // auth.getContent(res.token).then((res) => {
-                    //     console.log('res',res)
-                    //     if (res) {
-                    //     setLoggedIn(true);
-                    //     setCurrentUser({
-                    //         name: res.name,
-                    //         email: res.email,                        
-                    //     })
-                    //     console.log(currentUser)
-                    //     }    
-                    // })                    
-                localStorage.setItem('token', res.token);
-                handleRequest()
-            };
+                    setLoggedIn(true);                
+                    localStorage.setItem('token', res.token);
+                    console.log('Даже на handleLogin зашли вот с таким токеном', res.token)
+                    //--
+                    mainApi.getUserInfo(res.token)
+                        .then(res => {
+                        console.log('handleRequest',res)
+                        setCurrentUser(res)
+                    
+                    })
+                    .catch((err) => {console.log(err)});  
+        
+            }
+                //--
+                // handleRequest
             })
+            
             .then(() => history.push('/movies'))
         }    
 

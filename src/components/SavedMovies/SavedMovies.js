@@ -9,18 +9,28 @@ import FilterCheckBoxSavedMovies from '../SavedMovies/FilterCheckBoxSavedMovies/
 
 import mainApi from '../../utils/MainApi'
 
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+
 const SavedMovies = (props) => {
 
     const [renderedSavedMovies, setRenderedSavedMovies] = useState([])
     const [searchFraseSavedMovies, setSearchFraseSavedMovies] = useState('')
+
+    const currentUser = React.useContext(CurrentUserContext);
 
     //Запрос к базе фильмов и сохранение в массив
     function handleSavedMoviesRequest() {
 
         mainApi.getSavedMovies()
             .then(res => {
-                setRenderedSavedMovies(res)
-                console.log(res)
+                let arrayForRenderByOwnId = []
+                res.forEach(element => {
+                    if (element.owner === currentUser._id) {
+                        arrayForRenderByOwnId.push(element)
+                    }
+                })
+                setRenderedSavedMovies(arrayForRenderByOwnId)
+                // console.log(res)
             })
             .catch((err) => {console.log(err)});        
     }
@@ -30,6 +40,9 @@ const SavedMovies = (props) => {
     //Рендер при заходе на страницу
     useEffect(() => {
         handleSavedMoviesRequest()
+        console.log('handleSavedMoviesRequest',renderedSavedMovies)
+        console.log('CurrentUserContext',currentUser)
+
     }, []) 
 
 
@@ -52,16 +65,34 @@ const SavedMovies = (props) => {
         if (!searchFraseSavedMovies) {
             return;
         }
-        let arraySavedMovies = JSON.parse(localStorage.getItem('savedMovies'))
-        let arraySavedMoviesForRender = []
-        arraySavedMovies.forEach(element => {
-            if (element.nameRU.includes(searchFraseSavedMovies.search)) {
-                arraySavedMoviesForRender.push(element)
-            } else { }
-            setRenderedSavedMovies(arraySavedMoviesForRender)
 
-        });
-    
+        let arraySavedMoviesForRender = []
+
+
+        const ru = /[а-яА-ЯЁё]/;
+            if (ru.test(String(searchFraseSavedMovies.search))) {
+                renderedSavedMovies.forEach(element => {
+                    if (element.nameRU) {
+                        if (element.nameRU.includes(searchFraseSavedMovies.search)) {
+                            arraySavedMoviesForRender.push(element)
+                        } else { }
+                }
+                setRenderedSavedMovies(arraySavedMoviesForRender)
+                })
+            } else {
+                renderedSavedMovies.forEach(element => {
+                    if (element.nameEN) {
+                        if (element.nameEN.includes(searchFraseSavedMovies.search)) {
+                            arraySavedMoviesForRender.push(element)
+                        } else { }
+                }
+                setRenderedSavedMovies(arraySavedMoviesForRender)    
+                })
+            }
+
+
+
+
         }
     
     //Обработка поиска по фразе и продолжительности
@@ -70,16 +101,32 @@ const SavedMovies = (props) => {
         if (!searchFraseSavedMovies) {
             return;
         }
-    
-        let arraySavedMovies = JSON.parse(localStorage.getItem('savedMovies'))
+
         let arraySavedMoviesForRender = []
-    
-        arraySavedMovies.forEach(element => {
-            if (element.nameRU.includes(searchFraseSavedMovies.search) && (element.duration < 40)) {
-                arraySavedMoviesForRender.push(element)
-            } else { }
-            setRenderedSavedMovies(arraySavedMoviesForRender)
-        })
+
+
+        const ru = /[а-яА-ЯЁё]/;
+            if (ru.test(String(searchFraseSavedMovies.search))) {
+                renderedSavedMovies.forEach(element => {
+                    if (element.nameRU) {
+                        if (element.nameRU.includes(searchFraseSavedMovies.search) && (element.duration < 40)) {
+                            arraySavedMoviesForRender.push(element)
+                        } else { }
+                }
+                setRenderedSavedMovies(arraySavedMoviesForRender)
+                })
+            } else {
+                renderedSavedMovies.forEach(element => {
+                    if (element.nameEN) {
+                        if (element.nameEN.includes(searchFraseSavedMovies.search) && (element.duration < 40)) {
+                            arraySavedMoviesForRender.push(element)
+                        } else { }
+                }
+                setRenderedSavedMovies(arraySavedMoviesForRender)    
+                })
+            }
+
+
     }    
 
     //Обработка нажатия на кнопку поиск

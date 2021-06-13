@@ -56,14 +56,16 @@ export class MainApi {
     })
   }
 
-  getUserInfo() {
+  getUserInfo(token) {
     return fetch(`${this._address}/users/me`,{
       method: 'GET',
       headers: {
-        authorization: this._token
+        // authorization: this._token
+        authorization: `Bearer ${token}`
       }
     })
     .then(this._checkResponse)
+    // .then(console.log('getUserInfo', res.json()))
   }
 
   renewUserInfo(data) {
@@ -71,7 +73,7 @@ export class MainApi {
     return fetch(`${this._address}/users/me`,{
       method: 'PATCH',
       headers: {
-        authorization: this._token,
+        authorization:`Bearer ${(data)}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ 

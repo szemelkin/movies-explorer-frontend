@@ -10,28 +10,42 @@ import Continue from '../Movies/Continue/Continue'
 import moviesApi from '../../utils/MoviesApi'
 import mainApi from '../../utils/MainApi'
 
-// import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 const Movies = (props) => {
 
-    const [renderedMovies, setRenderedMovies] = useState([])
-    const [continueState, setContinueState] = useState(true)
+const [renderedMovies, setRenderedMovies] = useState([])
+const [continueState, setContinueState] = useState(true)
 
-    const [searchFrase, setSearchFrase] = useState('')
+const [searchFrase, setSearchFrase] = useState('')
 
-    //Достаем данные и сохраняем в локалсторидж
-    const handleMoviesRequest = () => {
-        moviesApi.getMovies()
-            .then(res => {
-                localStorage.setItem('movies', JSON.stringify(res))
-            })
-            .catch((err) => {console.log(err)});        
-    }
+console.log('Здесь')
+
+//Достаем данные и сохраняем в локалсторидж
+const handleMoviesRequest = () => {
+    moviesApi.getMovies()
+        .then(res => {
+            localStorage.setItem('movies', JSON.stringify(res))
+        })
+        .catch((err) => {console.log(err)});        
+}
+
+// const handleRequest = () => {
+//     let  token  = localStorage.getItem('token')
+//     mainApi.getUserInfo(token)
+//         .then(res => {
+//             console.log('handleRequest',res)
+//             setCurrentUser(res)            
+//         })
+//         .catch((err) => {console.log(err)});  
+
+//     }
 
 
-    useEffect(() => {
-        handleMoviesRequest()
-    }, []) 
+useEffect(() => {
+    handleMoviesRequest()
+    console.log('useEffect Здесь')
+    // handleRequest()
+}, []) 
 
 
 const handleClickContinue = () => {
@@ -39,15 +53,11 @@ const handleClickContinue = () => {
 }
 
 const handleSearch = (el) => {
-    // console.log('handleSearch', el)
     setRenderedMovies(el)
-    // console.log('handleSearch renderedMovies', renderedMovies)
 }
 
 const handleSearchFrase = (frase) => {
-    // console.log('handleSearch', el)
     setSearchFrase(frase)
-    // console.log('handleSearch renderedMovies', renderedMovies)
 }
 
 
@@ -66,14 +76,29 @@ const handleSearchByFrase = (searchFrase) => {
     }
     let arrayMovies = JSON.parse(localStorage.getItem('movies'))
     let arrayForRender = []
-    arrayMovies.forEach(element => {
-        if (element.nameRU.includes(searchFrase.search)) {
-            arrayForRender.push(element)
-        } else { }
-        setRenderedMovies(arrayForRender)
-    });
 
+    const ru = /[а-яА-ЯЁё]/;
+    if (ru.test(String(searchFrase.search))) {
+        arrayMovies.forEach(element => {
+            if (element.nameRU) {
+                if (element.nameRU.includes(searchFrase.search)) {
+                    arrayForRender.push(element)
+                } else { }
+        }
+        setRenderedMovies(arrayForRender)
+        })
+    } else {
+        arrayMovies.forEach(element => {
+            if (element.nameEN) {
+                if (element.nameEN.includes(searchFrase.search)) {
+                    arrayForRender.push(element)
+                } else { }
+        }
+        setRenderedMovies(arrayForRender)    
+        })
     }
+
+}
 
 const handleSearchByFraseAndDuration = (searchFrase) => {
 
@@ -84,12 +109,37 @@ const handleSearchByFraseAndDuration = (searchFrase) => {
     let arrayMovies = JSON.parse(localStorage.getItem('movies'))
     let arrayForRender = []
 
-    arrayMovies.forEach(element => {
-        if (element.nameRU.includes(searchFrase.search) && (element.duration < 40)) {
-            arrayForRender.push(element)
-        } else { }
+    //---
+    const ru = /[а-яА-ЯЁё]/;
+    if (ru.test(String(searchFrase.search))) {
+        arrayMovies.forEach(element => {
+            if (element.nameRU) {
+                if (element.nameRU.includes(searchFrase.search) && (element.duration < 40)) {
+                    arrayForRender.push(element)
+                } else { }
+        }
         setRenderedMovies(arrayForRender)
-    })
+        })
+    } else {
+        arrayMovies.forEach(element => {
+            if (element.nameEN) {
+                if (element.nameEN.includes(searchFrase.search) && (element.duration < 40)) {
+                    arrayForRender.push(element)
+                } else { }
+        }
+        setRenderedMovies(arrayForRender)    
+        })
+    }
+    //---
+
+
+    // arrayMovies.forEach(element => {
+    //     if (element.nameRU.includes(searchFrase.search) && (element.duration < 40)) {
+    //         arrayForRender.push(element)
+    //     } else { }
+    //     setRenderedMovies(arrayForRender)
+    // })
+
 }
 
 
