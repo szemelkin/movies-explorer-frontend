@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://api.zmovies.nomoredomains.icu';
+export const BASE_URL = 'https://api.zmovies.nomoredomains.icu';
 
 const responseCheck = (response) => response.ok ? response : Promise.reject(`Ошибка ${response.status}`);
 
@@ -39,16 +39,3 @@ export const authorize = (email, password) => {
     }) 
 };
 
-export const getContent = (token) => {
-  return fetch(`${BASE_URL}/users/me`, {
-    method: 'GET',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
-    //   'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGMwMWViNzIwOGE2MDZlNmQ2YTJjMTciLCJpYXQiOjE2MjMyMTM2MzB9.VkUpI9O9bf1xxBBlN5g20qoNWYG7a6boORZNuecrxDo`,
-    }
-  })
-    .then(responseCheck)
-
-}
