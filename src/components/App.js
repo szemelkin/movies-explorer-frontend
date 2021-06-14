@@ -11,6 +11,7 @@ import Register from '../components/Register/Register';
 import Login from '../components/Login/Login';
 import SavedMovies from '../components/SavedMovies/SavedMovies';
 import Errors from '../components/Errors/Errors';
+import Preloader from '../components/Movies/Preloader/Preloader';
 import ProtectedRoute from './ProtectedRoute';
 
 import mainApi from '../utils/MainApi'
@@ -20,6 +21,12 @@ import * as auth from '../utils/auth';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function App() {
+
+    // const currentUser = React.useContext(CurrentUserContext);
+
+    
+    const [showPreLoader, setShowPreLoader] = useState(false)
+
     const [loggedIn, setLoggedIn] = useState(false);
     const history = useHistory();
 
@@ -27,6 +34,8 @@ function App() {
         name: '', 
         email: ''
         })
+
+    console.log('App',currentUser)
                 
 
     const initialData = {
@@ -40,6 +49,7 @@ function App() {
         };    
 
     const handleRequest = () => {
+        setShowPreLoader(true)
         let  token  = localStorage.getItem('token')
         mainApi.getUserInfo(token)
             .then(res => {
@@ -47,8 +57,8 @@ function App() {
                 setCurrentUser(res)
                 
             })
-            .catch((err) => {console.log(err)});  
-    
+            .catch((err) => {console.log(err)})  
+            .finally(setShowPreLoader(false))
         }
         
     useEffect(() => {
@@ -70,6 +80,7 @@ function App() {
 
 
     const handleRegister = ({name, email, password}) => {
+        setShowPreLoader(true)
         return auth.register(name, email, password)
         .then(res => {
             if (!res || res.statusCode === 400) {
@@ -83,17 +94,21 @@ function App() {
         .catch((err)=>{
             console.log(`Ошибка при загрузке данных пользователя: ${err}`)
         })
+        .finally(setShowPreLoader(false))
     
     }
 
     const handleRenewUser = (data) => {
+        setShowPreLoader(true)
         return mainApi.renewUserInfo(data)
         .then(res => {
             if (!res || res.statusCode === 400) {
                 new Error('Что-то пошло не так!');            
             }
             if (res) {
-                setCurrentUser(data)
+                console.log('renewUserContextAfterPatching Пошли обновлять контекст')
+                renewUserContextAfterPatching()
+                // setCurrentUser(res)
             return res;
             
             }
@@ -101,6 +116,7 @@ function App() {
         .catch((err)=>{
             console.log(`Ошибка при загрузке данных пользователя: ${err}`)
         })
+        .finally(setShowPreLoader(false))
     
     }
 
@@ -125,16 +141,31 @@ function App() {
     //         }
     //     }
 
+
+
+    function renewUserContextAfterPatching() {
+        let token = localStorage.getItem('token');
+        console.log(token)
+        mainApi.getUserInfo(token)
+            .then(res => {
+            setCurrentUser(res)    
+            console.log('renewUserContextAfterPatching',res)
+            console.log('NewUserContext App', currentUser)              
+        })
+        .catch((err) => {console.log(err)});
+        
+    }
+
+
     const handleLogin = ({ email, password }) => {
-    
+        setShowPreLoader(true)
         return auth.authorize(email, password)
         .then(res => {
             if (!res || res.statusCode === 400) throw new Error('Что-то пошло не так');
-                if (res.token) {        
+                if (res.token) {      
                     setLoggedIn(true);                
                     localStorage.setItem('token', res.token);
                     console.log('Даже на handleLogin зашли вот с таким токеном', res.token)
-                    //--
                     mainApi.getUserInfo(res.token)
                         .then(res => {
                         console.log('handleRequest',res)
@@ -144,11 +175,10 @@ function App() {
                     .catch((err) => {console.log(err)});  
         
             }
-                //--
-                // handleRequest
             })
             
             .then(() => history.push('/movies'))
+            .finally(setShowPreLoader(false))
         }    
 
 
@@ -157,6 +187,7 @@ function App() {
             <div>
                 <div className="page">
                     <Header handleRequest = {handleRequest}/>
+                        
                         <Switch>
                             
                                 <Route exact path path = "/">
@@ -165,6 +196,7 @@ function App() {
                                 <ProtectedRoute path = "/movies"
                                     component = {Movies}
                                     loggedIn = {loggedIn} 
+                                    showPreLoader = {showPreLoader}
                                 >
                                 </ProtectedRoute>
                                 <ProtectedRoute path = "/saved-movies"
@@ -175,9 +207,11 @@ function App() {
                                 <ProtectedRoute path = "/profile"
                                     component = {Profile}
                                     loggedIn = {loggedIn} 
+                                    showPreLoader = {showPreLoader}
                                     handleRequest = {handleRequest}
                                     handleSignOut = {handleSignOut}
                                     handleRenewUser = {handleRenewUser}
+                                    renewUserContextAfterPatching = {renewUserContextAfterPatching}
                                 >
                                 </ProtectedRoute>
                             
@@ -185,12 +219,14 @@ function App() {
                             <Route path = "/signin">
                                 <Login 
                                     onLogin = {handleLogin}
+                                    showPreLoader = {showPreLoader}
                                     // tokenCheck = {tokenCheck}
                                 />
                             </Route>
                             <Route path = "/signup">
                                 <Register 
                                     onRegister={handleRegister} 
+                                    showPreLoader = {showPreLoader}
                                 />
                             </Route>
                             

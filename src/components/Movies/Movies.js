@@ -10,15 +10,23 @@ import Continue from '../Movies/Continue/Continue'
 import moviesApi from '../../utils/MoviesApi'
 import mainApi from '../../utils/MainApi'
 
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+
 
 const Movies = (props) => {
+
+const currentUser = React.useContext(CurrentUserContext);
+
+console.log('Movies',currentUser)
 
 const [renderedMovies, setRenderedMovies] = useState([])
 const [continueState, setContinueState] = useState(true)
 
 const [searchFrase, setSearchFrase] = useState('')
 
-console.log('Здесь')
+const [nothingToShow, setNothingToShow] = useState(false)
+
+
 
 //Достаем данные и сохраняем в локалсторидж
 const handleMoviesRequest = () => {
@@ -62,7 +70,7 @@ const handleSearchFrase = (frase) => {
 
 
 const handleSearchButton = (e) => {
-    
+
     e.preventDefault();
     if (!searchFrase) {
         return;
@@ -71,6 +79,7 @@ const handleSearchButton = (e) => {
     }
 
 const handleSearchByFrase = (searchFrase) => {
+    setNothingToShow(false)
     if (!searchFrase) {
         return;
     }
@@ -86,7 +95,12 @@ const handleSearchByFrase = (searchFrase) => {
                 } else { }
         }
         setRenderedMovies(arrayForRender)
+        
+        
         })
+
+        if (arrayForRender.length==0){setNothingToShow(true)}
+        
     } else {
         arrayMovies.forEach(element => {
             if (element.nameEN) {
@@ -96,11 +110,13 @@ const handleSearchByFrase = (searchFrase) => {
         }
         setRenderedMovies(arrayForRender)    
         })
+        if (arrayForRender.length==0){setNothingToShow(true)}
     }
 
 }
 
 const handleSearchByFraseAndDuration = (searchFrase) => {
+    setNothingToShow(false)
 
     if (!searchFrase) {
         return;
@@ -120,6 +136,7 @@ const handleSearchByFraseAndDuration = (searchFrase) => {
         }
         setRenderedMovies(arrayForRender)
         })
+        if (arrayForRender.length==0){setNothingToShow(true)}
     } else {
         arrayMovies.forEach(element => {
             if (element.nameEN) {
@@ -129,6 +146,7 @@ const handleSearchByFraseAndDuration = (searchFrase) => {
         }
         setRenderedMovies(arrayForRender)    
         })
+        if (arrayForRender.length==0){setNothingToShow(true)}
     }
     //---
 
@@ -146,8 +164,10 @@ const handleSearchByFraseAndDuration = (searchFrase) => {
 const handleShortMovies = (checkBox) => {
     if (!checkBox) {
         handleSearchByFraseAndDuration(searchFrase)
+        setShowPreLoader(false)
     } else {
         handleSearchByFrase(searchFrase)
+        setShowPreLoader(false)
     }
 }
 
@@ -162,9 +182,11 @@ const handleShortMovies = (checkBox) => {
             <FilterCheckBox 
                 handleShortMovies = {handleShortMovies}
             />
-            <MoviesCardList 
+            {(props.showPreLoader) && <div><Preloader /></div>}
+            <MoviesCardList
+                nothingToShow = {nothingToShow}
                 renderedMovies = {renderedMovies}
-                isSavedMovies = {false}
+                isSavedMovies = {false}                
             />
             <Continue 
                 handleClickContinue = {handleClickContinue}

@@ -5,7 +5,16 @@ import reactLogo from '../../images/logo.svg';
 import { useEffect, useState, useContext } from 'react'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 
+import Preloader from '../Movies/Preloader/Preloader';
+
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+
 const Register = ({ onRegister }) => {
+
+    const currentUser = React.useContext(CurrentUserContext);
+    console.log('Register',currentUser)
+
+
     const initialData = {
         name: '',
         email: '',
@@ -168,7 +177,7 @@ const Register = ({ onRegister }) => {
                 />
                 {(passwordDirty && passwordError) && <span className="register__input-error" id="modal__input-password-error">{passwordError}</span>}
             </div>
-
+            {props.showPreLoader ? <Preloader />: null}
             <button 
                 disabled={!formValid} 
                 type='submit' 

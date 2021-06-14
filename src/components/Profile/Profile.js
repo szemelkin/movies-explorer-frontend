@@ -9,8 +9,9 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 const Profile = (props) => {
 
-    
     const currentUser = React.useContext(CurrentUserContext);
+    console.log('Profile',currentUser)    
+
 
     const [isEdited, setIsEdited] = useState(false)
 
@@ -124,9 +125,13 @@ const Profile = (props) => {
         if (!data.email || !data.name) {
         return;
         }
+        console.log('Profile handleSubmit',data)
         props.handleRenewUser(data)
         .then(resetForm)
+        // .then(props.renewUserContextAfterPatching())
         .catch(err => setMessage(err.message || 'Что-то пошло не так!'))
+        
+
     }
 
     //-------

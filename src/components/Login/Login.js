@@ -2,13 +2,19 @@ import React from 'react';
 import './login/login.css'
 import '../Header/header/header.css'
 import reactLogo from '../../images/logo.svg';
+import Preloader from '../Movies/Preloader/Preloader';
+
 import { useEffect, useState, useContext } from 'react'
 
-// import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 import { Link, useHistory, useLocation } from 'react-router-dom'
 
 const Login = (props) => {
+
+    const currentUser = React.useContext(CurrentUserContext);
+
+    console.log('Login',currentUser)
 
     const initialLoginData = {
         name: '',
@@ -149,7 +155,7 @@ const Login = (props) => {
                 />
                 {(passwordDirty && passwordError) && <span className="register__input-error" id="modal__input-password-error">{passwordError}</span>}
             </div>
-
+            {props.showPreLoader ? <Preloader />: null}
             <button 
                 disabled={!formValid} 
                 type='submit' 

@@ -7,6 +7,7 @@ export class MainApi {
 
   _checkResponse(res) {
     if (res.ok) {
+        // console.log('_checkResponse', this._token)
         return res.json();
     }
     return Promise.reject(`Ошибка ${res.status}`);
@@ -65,15 +66,14 @@ export class MainApi {
       }
     })
     .then(this._checkResponse)
-    // .then(console.log('getUserInfo', res.json()))
+
   }
 
   renewUserInfo(data) {
-    console.log(data)
     return fetch(`${this._address}/users/me`,{
       method: 'PATCH',
       headers: {
-        authorization:`Bearer ${(data)}`,
+        authorization: this._token,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ 
@@ -88,9 +88,7 @@ export class MainApi {
 
 
 const mainApi = new MainApi({
-  // address: 'https://api.zmovies.nomoredomains.icu/',
   address: 'https://api.zmovies.nomoredomains.icu',
   token: `Bearer ${localStorage.getItem('token')}`
-  // token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDk5NGE2ZmE5ZGIzYzI3OGIyNmE0NzciLCJpYXQiOjE2MjA2NTg4ODB9.F5m6CYsPpN3J-ALiUvtA3PVlYjdHSVFxPK6_8A7pOWc'  
 });
 export default mainApi;
