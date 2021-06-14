@@ -32,7 +32,9 @@ function MoviesCard(props) {
 
     //Отправляем фильм на сохранение
     function handleSaveMovies() {
-
+        console.log('MoviesCard handleSaveMovies', props)
+        mainApi.token = localStorage.getItem('token')
+        console.log('MoviesCard handleSaveMovies Token', mainApi.token)
         mainApi.postSavedMovies(props)
         setIsSavedMovies(true)
     }

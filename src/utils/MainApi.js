@@ -1,7 +1,7 @@
 export class MainApi {
   constructor({address, token}) {
     this._address = address;
-    this._token = token;
+    this._token = `Bearer ${localStorage.getItem('token')}`;
   }
 
 
@@ -28,6 +28,7 @@ export class MainApi {
     return fetch(`${this._address}/movies`,{
       method: 'GET',
       headers: {
+        // authorization: this._token
         authorization: this._token
       }
     })
@@ -38,6 +39,7 @@ export class MainApi {
     return fetch(`${this._address}/movies`,{
       method: 'POST',
       headers: {
+        // authorization: this._token,
         authorization: this._token,
         'Content-Type': 'application/json',
       },
