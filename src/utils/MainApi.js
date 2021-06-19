@@ -18,18 +18,18 @@ export class MainApi {
     return fetch(`${this._address}/movies/${data._id}`,{
       method: 'DELETE',
       headers: {
-        authorization: this._token
+        authorization: `Bearer ${localStorage.getItem('token')}`
       }
     })
     .then(this._checkResponse)
   }
 
-  getSavedMovies(data) {
+  getSavedMovies() {
     return fetch(`${this._address}/movies`,{
       method: 'GET',
       headers: {
         // authorization: this._token
-        authorization: this._token
+        authorization: `Bearer ${localStorage.getItem('token')}`
       }
     })
     .then(this._checkResponse)
@@ -40,7 +40,7 @@ export class MainApi {
       method: 'POST',
       headers: {
         // authorization: this._token,
-        authorization: this._token,
+        authorization: `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ 
@@ -63,8 +63,7 @@ export class MainApi {
     return fetch(`${this._address}/users/me`,{
       method: 'GET',
       headers: {
-        // authorization: this._token
-        authorization: `Bearer ${token}`
+        authorization: `Bearer ${localStorage.getItem('token')}`,
       }
     })
     .then(this._checkResponse)
@@ -75,7 +74,7 @@ export class MainApi {
     return fetch(`${this._address}/users/me`,{
       method: 'PATCH',
       headers: {
-        authorization: this._token,
+        authorization: `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ 

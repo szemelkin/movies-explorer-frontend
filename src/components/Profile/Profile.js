@@ -10,7 +10,7 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 const Profile = (props) => {
 
     const currentUser = React.useContext(CurrentUserContext);
-    console.log('Profile',currentUser)    
+
 
 
     const [isEdited, setIsEdited] = useState(false)

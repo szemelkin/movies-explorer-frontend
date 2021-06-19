@@ -13,37 +13,27 @@ import { CurrentUserContext } from '../../../contexts/CurrentUserContext';
 
 function MoviesCard(props) {
 
-
     const currentUser = React.useContext(CurrentUserContext);
-
 
     // Проверяем есть ли картинка у фильма
     let urlMainPic = ''
     if (props.image === null) {
         urlMainPic = ''
     } else {urlMainPic = props.image}
+    let save = true
 
+    //Меняем иконку на карточке фильма на иконку, что фильм сохранен
 
-    const handleTrailerLink = (url) => {
-        window.open(url, '_blank', 'noopener,noreferrer')
-    }
-
-    const [isSavedMovies, setIsSavedMovies] = useState(false)
+    // console.log('В массиве или нет?',props.isSaved(props))
 
     //Отправляем фильм на сохранение
     function handleSaveMovies() {
-        console.log('MoviesCard handleSaveMovies', props)
-        mainApi.token = localStorage.getItem('token')
-        console.log('MoviesCard handleSaveMovies Token', mainApi.token)
-        mainApi.postSavedMovies(props)
-        setIsSavedMovies(true)
+
+        props.handleClickOnLikeButton(props)
+
     }
 
-    //Меняем иконку на карточке фильма на иконку, что фильм сохранен
-    const savedMoviesSrc = () => {
-        if (isSavedMovies) {return savedMovies} else {return notSavedMovies}
-    }; 
-    
+    const cardLikeButtonClassName = `${props.isSaved(props) ? savedMovies: notSavedMovies}`;
 
     return (
         <div>
@@ -53,9 +43,9 @@ function MoviesCard(props) {
                         <h2 className="movies-card__title">{props.nameRU}</h2>
                         <p className="movies-card__duration">{(Math.floor(props.duration/60)) + ' ч ' + (props.duration - (Math.floor(props.duration/60)*60))+ ' м'}</p>
                     </div>
-                    <button onClick = {handleSaveMovies}  className="movies-card__button"><img className="movies-card__icon" src={savedMoviesSrc()}  alt="Здесь должна быть картинка"/></button>
+                    <button onClick = {handleSaveMovies}  className="movies-card__button"><img className="movies-card__icon" src={cardLikeButtonClassName}  alt="Здесь должна быть картинка"/></button>
                 </div>
-                <img className="movies-card__image" onClick = {() => handleTrailerLink(props.image.trailerLink)} src={"https://api.nomoreparties.co"+ urlMainPic.url} alt="Здесь должна быть картинка"/>
+                <img className="movies-card__image" onClick = {() => props.handleTrailerLink(props.image.trailerLink)} src={"https://api.nomoreparties.co"+ urlMainPic.url} alt="Здесь должна быть картинка"/>
             </div>
         </div>
     )

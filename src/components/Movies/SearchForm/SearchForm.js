@@ -5,26 +5,6 @@ import searchIcon from '../../../images/search.svg';
 
 const SearchForm = (props) => {
 
-    const [dataSearch, setDataSearch] = useState()
-
-    
-        const handleSearchInput = (e) => {
-            handleChange(e)
-        }
-
-        useEffect(() => {
-            props.handleSearchFrase(dataSearch)
-        },[dataSearch])
-
-
-    const handleChange = (e) => {
-        const {name, value} = e.target;
-        setDataSearch(data => ({
-            ...data,
-            [name]:value
-        }))
-    }
-
     return (
         <div>
             <div className="search-form">
@@ -33,7 +13,7 @@ const SearchForm = (props) => {
                     name = 'search'
                     className="search-form__text" 
                     required placeholder="Фильм"
-                    onChange = {e => handleSearchInput(e)} 
+                    onChange = {e => props.handleChange(e)} 
                 />
                 <button 
                     className="search-form__button" 

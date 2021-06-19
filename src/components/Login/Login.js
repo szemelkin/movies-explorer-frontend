@@ -14,7 +14,7 @@ const Login = (props) => {
 
     const currentUser = React.useContext(CurrentUserContext);
 
-    console.log('Login',currentUser)
+    // console.log('Login',currentUser)
 
     const initialLoginData = {
         name: '',
@@ -108,13 +108,13 @@ const Login = (props) => {
         e.preventDefault();
         console.log('handleSubmit',dataLogin, email)
         if (!dataLogin.email || !dataLogin.password) {
-            console.log('прикатились сюда')
+            // console.log('прикатились сюда')
             return;
         }
         props.onLogin(dataLogin)
-            .then(console.log('dataLogin',dataLogin))
+            // .then(console.log('dataLogin',dataLogin))
             .then(resetForm)  
-            .then(console.log('дошли'))
+            // .then(console.log('дошли'))
             .then(() => history.push('/movies'))
             .catch(err => setMessage(err.message || 'Что-то пошло не так!'))
         }

@@ -12,7 +12,6 @@ const FilterCheckBoxSavedMovies = (props) => {
     const handleCheckBox = () => {
         setCheckBox(!checkBox)
         props.handleShortSavedMovies(checkBox)
-        console.log('checkBox',checkBox)
     }       
     
     const checkBoxSrc = () => {

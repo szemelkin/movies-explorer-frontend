@@ -82,12 +82,14 @@ const Header = (props) => {
     const currentUrl = location.pathname
 
     const menuNavigation = (currentUrl) => {
-        if (currentUrl == "/") {return signin}
+        if (currentUrl == "/" && !localStorage.getItem('token')) {return signin}
+        else if (currentUrl == '/' && localStorage.getItem('token')) {return logined}
         else if (currentUrl == '/movies') {return logined}
         else if (currentUrl == '/saved-movies') {return logined}
         else if (currentUrl == '/profile') {return logined}
         else if (currentUrl == '/signin') {return signing}
     }
+
 
     return (
         <div>

@@ -3,6 +3,9 @@ import './continue/continue.css'
 
 const Continue = (props) => {
 
+    console.log('Continue = (props)', props)
+
+
     return (
         <div className="continue">
             <button className="continue__button" onClick = {props.handleClickContinue}>
