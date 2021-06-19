@@ -5,13 +5,13 @@ import './filter-check-box/filter-check-box.css'
 import tumblerMoviesOn from '../../../images/smalltumb_on.svg'
 import tumblerMoviesOff from '../../../images/smalltumb_off.svg'
 
-const FilterCheckBox = (props) => {
+const FilterCheckBoxSavedMovies = (props) => {
 
     const [checkBox, setCheckBox] = useState(false)
 
     const handleCheckBox = () => {
         setCheckBox(!checkBox)
-        props.handleShortMovies(checkBox)
+        props.handleShortSavedMovies(checkBox)
     }       
     
     const checkBoxSrc = () => {
@@ -27,4 +27,4 @@ const FilterCheckBox = (props) => {
     )
 };
 
-export default FilterCheckBox;
+export default FilterCheckBoxSavedMovies;

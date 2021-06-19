@@ -1,8 +1,13 @@
 import React from 'react';
+
+import { Link, useHistory, useLocation } from 'react-router-dom'
 import './footer.css'
 
 const Footer = () => {
-    return (
+
+    const location = useLocation();
+
+    const common = 
         <div>
             <footer className="footer">
                 <p className="footer__description-text">Учебный проект Яндекс.Практикум х BeatFilm.</p>
@@ -16,6 +21,28 @@ const Footer = () => {
                     </div>
                 </div>
             </footer>
+        </div>
+
+    const signing = 
+        <div>
+        </div>
+
+    const currentUrl = location.pathname
+
+    const menuNavigation = (currentUrl) => {
+        if (currentUrl == "/") {return common}
+        else if (currentUrl == '/movies') {return common}
+        else if (currentUrl == '/saved-movies') {return common}
+        else if (currentUrl == '/profile') {return common}
+        else if (currentUrl == '/signin') {return signing}
+        else if (currentUrl == '/signup') {return signing}
+    }
+
+    return (
+        <div>
+            {
+                menuNavigation(currentUrl)                
+            }
         </div>
     )
 };

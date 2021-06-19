@@ -6,6 +6,8 @@ import burgerMenu from '../../images/burger_menu_max.svg';
 import crossButton from '../../images/close_cross.svg';
 import './header/header.css'
 
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+
 const handleBurger = (e) => {
     document.getElementById("surprise").classList.toggle('header__invisible')
     document.getElementById("burgerButton").classList.toggle('header__invisible')
@@ -33,9 +35,11 @@ const handleCrossButton = (e) => {
 }
 
 
-const Header = () => {
+const Header = (props) => {
 
     const location = useLocation();
+
+    // console.log('props.handleRequest',props.handleRequest)
 
     const signin = 
         <div>
@@ -64,21 +68,28 @@ const Header = () => {
                             <Link to="movies" id='surprise3' className="header__link_type_burger header__invisible" href="/">Главная</Link>          
                             <Link to="movies" id='surprise4' className="header__link_type_burger header__invisible" href="/movies">Фильмы</Link>
                             <Link to="saved-movies" id='surprise5' className="header__link_type_burger header__invisible" href="/saved-movies">Сохраненные фильмы</Link>
-                            <Link to="profile" id='surprise6' className="header__link_type_burger header__invisible" href="/profile"><img className="header__profileLink" src={profileLink} alt="Логотип место"/></Link>
+                            <Link onClick = {props.handleRequest} to="profile" id='surprise6' className="header__link_type_burger header__invisible" href="/profile"><img className="header__profileLink" src={profileLink} alt="Логотип место"/></Link>
                         </div>  
                     </div>
                 </div>
             </header>
         </div>
+    
+    const signing = 
+        <div>
+        </div>
 
     const currentUrl = location.pathname
 
     const menuNavigation = (currentUrl) => {
-        if (currentUrl == "/") {return signin}
+        if (currentUrl == "/" && !localStorage.getItem('token')) {return signin}
+        else if (currentUrl == '/' && localStorage.getItem('token')) {return logined}
         else if (currentUrl == '/movies') {return logined}
         else if (currentUrl == '/saved-movies') {return logined}
         else if (currentUrl == '/profile') {return logined}
+        else if (currentUrl == '/signin') {return signing}
     }
+
 
     return (
         <div>

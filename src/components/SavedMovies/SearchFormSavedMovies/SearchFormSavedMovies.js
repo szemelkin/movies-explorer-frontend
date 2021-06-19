@@ -3,7 +3,7 @@ import { useEffect, useState, useContext } from 'react'
 import './search-form/search-form.css'
 import searchIcon from '../../../images/search.svg';
 
-const SearchForm = (props) => {
+const SearchFormSavedMovies = (props) => {
 
     return (
         <div>
@@ -17,7 +17,7 @@ const SearchForm = (props) => {
                 />
                 <button 
                     className="search-form__button" 
-                    onClick={(e) => {props.handleSearchButton(e)}}
+                    onClick={(e) => {props.handleSearchSavedMoviesButton(e)}}
                     >Найти
                 </button>
             </div>
@@ -26,4 +26,4 @@ const SearchForm = (props) => {
 
 };
 
-export default SearchForm;
+export default SearchFormSavedMovies;

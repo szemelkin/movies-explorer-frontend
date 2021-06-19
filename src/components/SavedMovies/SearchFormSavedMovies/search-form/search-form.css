@@ -1,7 +1,6 @@
 @import url('./__button/search-form__button.css');
 @import url('./__icon/search-form__icon.css');
 @import url('./__text/search-form__text.css');
-@import url('./__text/search-form__text_type_answer.css');
 
 .search-form {
     height: 64px;

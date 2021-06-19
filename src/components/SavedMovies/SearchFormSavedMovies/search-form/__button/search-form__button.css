@@ -1,0 +1,30 @@
+.search-form__button {
+    border-radius: 48px;
+    background-color: #4285F4;
+
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
+    letter-spacing: 0px;
+    text-align: center;
+
+    color: white;
+
+    border: none;
+
+    height: 34px;
+    width: 58px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.search-form__button:hover {
+    font-weight: 400;
+    opacity: 80%;
+
+}

@@ -6,6 +6,7 @@
 @import url('./__input-title/register__input-title.css');
 @import url('./__registaration-text/register__registration-text.css');
 @import url('./__registration-link/register__registration-link.css');
+@import url('./__input/register__input_type_profile.css');
 
 .register {
     background-color: #202020;;

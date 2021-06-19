@@ -5,7 +5,23 @@ import reactLogo from '../../images/logo.svg';
 import { useEffect, useState, useContext } from 'react'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 
-const Register = () => {
+import Preloader from '../Movies/Preloader/Preloader';
+
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+
+const Register = ({ onRegister }) => {
+
+    const currentUser = React.useContext(CurrentUserContext);
+    console.log('Register',currentUser)
+
+
+    const initialData = {
+        name: '',
+        email: '',
+        password: '',
+        };
+    const [data, setData] = useState(initialData);
+
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -30,6 +46,7 @@ const Register = () => {
     
     const nameHandler = (e) => {
         setName(e.target.value)
+        handleChange(e)
         if (e.target.value.length < 3 || e.target.value.length > 20) {
             setNameError('Имя должно быть длиннее 3 и короче 20 символов')
             if(!e.target.value) {
@@ -42,8 +59,9 @@ const Register = () => {
     
     const emailHandler = (e) => {
         setEmail(e.target.value)
+        handleChange(e)
         const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if (!re.test(String(email).toLowerCase())) {
+        if (!re.test(String(e.target.value).toLowerCase())) {
             setEmailError('Некорректный емейл')
         } else {
             setEmailError('')
@@ -52,6 +70,7 @@ const Register = () => {
 
     const passwordHandler = (e) => {
         setPassword(e.target.value)
+        handleChange(e)
         if (e.target.value.length < 3 || e.target.value.length > 20) {
             setPasswordError('Пароль должен быть длиннее 3 и короче 20 символов')
             if(!e.target.value) {
@@ -77,8 +96,39 @@ const Register = () => {
         }
     }
 
+
+    const [message, setMessage] = useState('');
+    const history = useHistory();
+
+    const handleChange = (e) => {
+            const { name, value } = e.target;
+            setData(data => ({
+            ...data,
+            [name]:value
+            })
+        );
+    }
+
+    const resetForm = () => {
+        setData(initialData);
+        setMessage('');
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!data.email || !data.password) {
+        return;
+        }
+        onRegister({name, email, password})
+        .then(resetForm)
+        .then(() => history.push('/signin'))
+        .catch(err => setMessage(err.message || 'Что-то пошло не так!'))
+    }
+
+    // const currentUser = React.useContext(CurrentUserContext);
+
     return (
-        <form className="register">            
+        <form onSubmit = {handleSubmit} className="register">            
             <img 
                 className="header__logo header__logo_type_register" 
                 src={reactLogo} 
@@ -123,10 +173,11 @@ const Register = () => {
                     type="password" 
                     required 
                     placeholder = "password"
+                    autoComplete="on"
                 />
                 {(passwordDirty && passwordError) && <span className="register__input-error" id="modal__input-password-error">{passwordError}</span>}
             </div>
-
+            {props.showPreLoader ? <Preloader />: null}
             <button 
                 disabled={!formValid} 
                 type='submit' 

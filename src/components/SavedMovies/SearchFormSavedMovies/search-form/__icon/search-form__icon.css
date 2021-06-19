@@ -1,0 +1,16 @@
+.search-form__icon {
+    width: 34px;
+    object-fit: contain;
+    
+}
+
+.search-form__icon:hover {
+    opacity: 80%;
+    
+}
+
+@media (max-width: 320px) {
+    .search-form__icon {
+        width: 0px;
+    }
+}

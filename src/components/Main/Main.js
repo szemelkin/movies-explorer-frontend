@@ -6,7 +6,12 @@ import AboutMe from './AboutMe/AboutMe';
 import Portfolio from './Portfolio/Portfolio';
 import './main.css'
 
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+
 const Main = () => {
+
+    const currentUser = React.useContext(CurrentUserContext);
+
     return (
         <div>
             <main className="main">

@@ -11,6 +11,9 @@
     margin-bottom: 16px;
     text-decoration: none;
 
+    background-color: #202020;
+    border: none;
+
 }
 
 .profile__edit:hover {
